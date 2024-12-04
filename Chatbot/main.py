@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request, jsonify
 import requests
 import random
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app)
 # API endpoint for fetching careers
-CAREERS_API_URL = 'http://localhost:5000/careers'  # Replace with your actual API endpoint
+CAREERS_API_URL = 'https://recommendation-system-qf8r.onrender.com/careers'  # Replace with your actual API endpoint
 
 def fetch_careers():
     """Fetch careers from the API and organize by domain"""
@@ -132,4 +133,4 @@ def reset():
     return jsonify({'status': 'reset'})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=10000)
