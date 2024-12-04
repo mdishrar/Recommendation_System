@@ -4,6 +4,7 @@ import psycopg2
 from psycopg2.extras import execute_values
 from flask import Flask, jsonify, request
 import os
+from flask_cors import CORS
 
 class PostgreSQLUploader:
     def __init__(self, db_url=None):
@@ -144,6 +145,7 @@ class PostgreSQLUploader:
 
 # Flask App
 app = Flask(__name__)
+CORS(app)
 
 # Initialize uploader (replace with your actual database URL)
 uploader = PostgreSQLUploader("postgresql://careerdb_user:DjlIgxpBJTDNZmRL7YpD6o7Gq8hxtahn@dpg-ct6lodaj1k6c73ahheug-a.singapore-postgres.render.com/careerdb")
