@@ -24,6 +24,8 @@
                 Reset
             </button>
         </div>
+        
+        <!--https://chatbot-recommendation-system.onrender.com -->
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -43,7 +45,10 @@
                 }
 
                 messageDiv.className = className;
-                messageDiv.textContent = message;
+                
+                const formattedMessage = message.replace(/\r?\n/g, '<br>');
+
+                messageDiv.innerHTML = formattedMessage;
                 chatContainer.appendChild(messageDiv);
                 chatContainer.scrollTop = chatContainer.scrollHeight;
             }
@@ -56,7 +61,7 @@
                 userInput.value = '';
 
                 try {
-                    const response = await fetch('/chat', {
+                    const response = await fetch('https://chatbot-recommendation-system.onrender.com/chat', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -71,9 +76,8 @@
                     addMessage('Sorry, there was an error processing your message.', 'bot');
                 }
             }
-
             function resetChat() {
-                fetch('/reset', { 
+                fetch('https://chatbot-recommendation-system.onrender.com/reset', { 
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
